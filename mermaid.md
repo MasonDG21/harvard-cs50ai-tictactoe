@@ -1,6 +1,6 @@
 ```mermaid
 graph TD
-    A["0. initial_state\nInitializes the Board"]
+    A["0. initial_state\nInitializes the Boards"]
     B["1. player\nDetermine current player"]
     C["2. actions\nList Possible Actions for current board"]
     D["3. result\nSimulates the result of a given action"]
