@@ -113,4 +113,48 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    raise NotImplementedError
+    # get the current player from the current board state.
+    current_player = player(board)
+    
+    def maximize(board):
+        # if the game is over return the utility of the board.
+        if terminal(board):
+            return utility(board), None
+        
+        # set the initial value of v to negative infinity.
+        v = -math.inf
+        best_action = None
+        
+        # Loop through the possible actions
+        for action in actions(board):
+            # get the max value of current board
+            min_value, _ = minimize(result(board, action))
+            if min_value > v:
+                v = min_value
+                best_action = action
+        return v, best_action
+    
+    def minimize(board):
+        # like in maximize - if the game is terminal we want to return the utlity.
+        if terminal(board):
+            return utility(board), None
+        
+        # set initial value of v to positive infinity
+        v = math.inf
+        best_action = None
+        
+        # loop through the possible actions
+        for action in actions(board):
+            # get the max value of the current board.
+            max_value, _ = maximize(result(board, action))
+            if max_value < v:
+                v = max_value
+                best_action = action
+        return v, best_action
+    
+    if current_player == X:
+        _, optimal_action = maximize(board)
+    else:
+        _, optimal_action = minimize(board)
+        
+    return optimal_action
