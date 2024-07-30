@@ -42,6 +42,11 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
+    i, j = action
+    
+    # check if the action is in bounds.
+    if i < 0 or j >= len(board) or j <0 or j >= len(board[i]):
+        raise Exception("Invalid action: Out of bounds.")
     
     # check if the action is valid
     if board[action[0]][action[1]] != EMPTY:
@@ -79,8 +84,7 @@ def winner(board):
     if board[0][2] is not None and board[0][2] == board[1][1] == board[2][0]:
         return board[0][2]
     
-    return None # return None if there is no winner.
-
+    return None # return None if there is no winner
 
 def terminal(board):
     """
