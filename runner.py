@@ -1,7 +1,6 @@
 import pygame
 import sys
 import time
-
 import tictactoe as ttt
 import test_ttt as test_ttt
 
